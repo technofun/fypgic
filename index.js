@@ -34,6 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(morgan('combined'));
 
+app.options('*', cors())
 app.use('/api/student', studentRoutes);
 app.use('/api/admin', adminRoutes);
 
