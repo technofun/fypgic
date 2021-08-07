@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000;
 dotenv.config();
 
-app.use(cors());
+
 const db_uri = process.env.Database_URI
 const studentRoutes = require('./routes/studentRoutes')
 const adminRoutes = require('./routes/adminRoutes')
@@ -24,7 +24,11 @@ mongoose.connect(db_uri, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
-
+var corsOptions = {
+    origin: ['localhost:3000','localhost:3000/addStudent'],
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
+app.use(cors(corsOptions));
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
