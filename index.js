@@ -37,14 +37,10 @@ app.use(morgan('combined'));
 app.options('*', cors())
 app.use('/api/student', studentRoutes);
 app.use('/api/admin', adminRoutes);
-
-
 app.get('/', (req, res) => {
     res.send("this is homepage")
 })
 
-app.get('/alldata', (req, res) => {
-    res.send("show all result of student")
-})
+
 
 app.listen(PORT, () => console.log(`server is runing on Port ${PORT}`))
