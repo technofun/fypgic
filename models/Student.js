@@ -106,6 +106,9 @@ const StudentSchema = new mongoose.Schema({
     session: {
         type: String
     },
+    batch: {
+        type: String
+    },
     semester: {
         type: [SemesterSchema],
     },

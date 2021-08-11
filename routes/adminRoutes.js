@@ -40,6 +40,7 @@ router.post('/login', async (req, res) => {
     }
 })
 
+
 //update the user
 router.put('/:id', async (req, res) => {
     if (req.body.userId === req.params.id || req.body.isAdmin) {

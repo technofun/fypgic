@@ -17,6 +17,7 @@ router.post('/registerstudent', async (req, res) => {
             email: req.body.email,
             semester: req.body.semester,
             session: req.body.session,
+            batch: req.body.batch,
             currentSemester: req.body.currentSemester
         })
         const student = await newStudent.save();
@@ -43,6 +44,27 @@ router.get('/allstudents', async (req, res,next) => {
     }
     // res.send("show all result of student")
 })
+
+// find all students by filter 
+router.get('/studentsqr/:session/:semester/:batch', async (req, res,next) => {
+    try {
+      await Student.find({session:req.params.session,currentSemester:req.params.semester,batch:req.params.batch},(err,data)=>{
+            if (err) {
+                res.send('not found something wrong');
+                next();
+            } 
+            res.json(data).status(200)
+        })
+        // const students = await Student.find();
+       
+    }
+    catch (error) {
+        return res.status(500).json(error)
+    }
+    // res.send("show all result of student")
+})
+
+
 //get user 
 router.get('/:id', async (req, res) => {
 
