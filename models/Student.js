@@ -54,7 +54,7 @@ const SemesterSchema = new mongoose.Schema({
     },
     semester3: {
         type: Array,
-        default: []
+        default: [SubjectsSchema]
     },
     semester4: {
         type: Array,
@@ -116,7 +116,7 @@ const StudentSchema = new mongoose.Schema({
         type: String,
         require: true,
         max: 50,
-        unique: true
+        // unique: true
     },
     username: {
         type: String,

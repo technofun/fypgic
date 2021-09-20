@@ -27,17 +27,17 @@ router.post('/registerstudent', async (req, res) => {
     }
 });
 // get all students
-router.get('/allstudents', async (req, res,next) => {
+router.get('/allstudents', async (req, res, next) => {
     try {
-      await Student.find({},(err,data)=>{
+        await Student.find({}, (err, data) => {
             if (err) {
                 res.send('something wrong');
                 next();
-            } 
+            }
             res.json(data).status(200)
         })
         // const students = await Student.find();
-       
+
     }
     catch (error) {
         return res.status(500).json(error)
@@ -45,18 +45,31 @@ router.get('/allstudents', async (req, res,next) => {
     // res.send("show all result of student")
 })
 
-// find all students by filter 
-router.get('/studentsqr/:session/:semester/:batch', async (req, res,next) => {
+//Update Student by id
+router.put('/:id', async (req, res) => {
     try {
-      await Student.find({session:req.params.session,currentSemester:req.params.semester,batch:req.params.batch},(err,data)=>{
+        const user = await Student.findByIdAndUpdate(req.params.id, {
+            $set: req.body
+        })
+        res.status(200).json("Account has been updated")
+    } catch (error) {
+        return res.status(500).json(error)
+    }
+
+});
+
+// find all students by filter 
+router.get('/studentsqr/:session/:semester/:batch', async (req, res, next) => {
+    try {
+        await Student.find({ session: req.params.session, currentSemester: req.params.semester, batch: req.params.batch }, (err, data) => {
             if (err) {
                 res.send('not found something wrong');
                 next();
-            } 
+            }
             res.json(data).status(200)
         })
         // const students = await Student.find();
-       
+
     }
     catch (error) {
         return res.status(500).json(error)
