@@ -86,22 +86,18 @@ const StudentSchema = new mongoose.Schema({
         type: String,
         require: true,
         min: 3,
-        max: 20,
     },
     rollnumber: {
         type: Number,
-        require: true,
         min: 3
     },
     registrationNumber: {
         type: String,
         require: true,
-        min: 16,
     },
     universityRollNumber: {
         type: Number,
         require: true,
-        min: 6,
     },
     session: {
         type: String
@@ -114,7 +110,6 @@ const StudentSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        require: true,
         max: 50,
         // unique: true
     },
